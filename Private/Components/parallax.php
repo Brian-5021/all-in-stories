@@ -6,7 +6,7 @@
                 <h4 class="parrafoPara">Un sitio diseñado para que puedas compartir tus historias ya sean fantasticas o de tu vida real, ¡millones quieren leerte!
                 </h4>
                 <a href="index.html" class="waves-effect waves-light btn-large teal lighten-2">Iniciar sesión</a>
-                <a href="" class="waves-effect waves-light btn-large teal lighten-2">Registrarse</a>
+                <a href="Private/Pages/check-in.php" class="waves-effect waves-light btn-large teal lighten-2">Registrarse</a>
               </div>
             </div>
           </div>
