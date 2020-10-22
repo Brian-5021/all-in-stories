@@ -33,7 +33,7 @@
                 $name_validate = true;
             }else {
                 $name_validate = false;
-                $errors['reg_nombre'] = "Error Name";
+                $errors['reg_nombre'] = "¡Ha habido un error en el nombre, digita nuevamente!";
             }
 
             //validar apellido
@@ -41,7 +41,7 @@
                 $lastname_validate = true;
             }else {
                 $lastname_validate = false;
-                $errors['reg_apellido'] = "Error Lastame";
+                $errors['reg_apellido'] = "¡Ha habido un error en el apellido, digita nuevamente!";
             }
 
             //validar email
@@ -49,7 +49,7 @@
                 $validate_email = true;
             } else {
                 $validate_email = false;
-                $errors['reg_email'] = "Error Email";
+                $errors['reg_email'] = "¡Oops!...Hay un error en el email ingresado, digita otra vez";
             }
 
             //ya verificamos que no esté vacío
@@ -58,7 +58,7 @@
                 $validate_pass = true;
             }else {
                 $validate_pass = false;
-                $errors['reg_pass'] = "La contraseña está vacía";
+                $errors['reg_pass'] = "La contraseña no puede estar vacía";
             }
 
             
@@ -75,11 +75,8 @@
 
                 $save = mysqli_query($db, $sql);
 
-                var_dump(mysqli_error($db));
-                die();
-
                 if($save){
-                    $_SESSION['completed'] = "El registrose ha completado con exito";
+                    $_SESSION['completed'] = "El registro se ha completado con exito";
                 }else {
                     $_SESSION['errors']['general'] = "Fallo al guardar";
                 }
@@ -90,5 +87,6 @@
             }
         }
 
-        header('Location: ../index.php');
+        header('Location: ../Pages/check-in.php');
+        exit();
 ?>
