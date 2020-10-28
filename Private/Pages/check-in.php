@@ -1,8 +1,16 @@
+
+<?php 
+
+if(!isset($_SESSION)){
+  session_start();
+}
+
+?>
+
 <?php require_once 'C:\xampp\htdocs\PHP\All-In-Stories\Private\Components\navbar.php'?>
 <?php require_once 'C:\xampp\htdocs\PHP\All-In-Stories\Private\Actions\functions.php'?>
 
 
-<?php session_start() ?>
 
 <div class="container" style="height: auto!important;">
   <div class="row">
@@ -37,7 +45,7 @@
       <div class="row">
         <div class="col-md-12">
 
-      <form class="col s12 mt-2" action="../Actions/registro.php" method="POST" id="form_register" autocomplete="nope">
+      <form class="col s12 mt-2" action="../Actions/registro.php" method="POST" id="form_register" autocomplete="nope" enctype="multipart/form-data">
         <div class="row">
           <div class="input-field col-md-6 col-sm-12">
             <i class="material-icons prefix">account_circle</i>
@@ -67,6 +75,7 @@
             <i class="material-icons prefix">enhanced_encryption</i>
             <input id="icon_password2" type="password" class="validate" name="reg_repass" id="reg_repass">
             <label for="icon_password2">Repita Contraseña</label>
+            <?php echo isset($_SESSION['errors']) ? DisplayErrors($_SESSION['errors'], 'reg_repass') : '' ?>
           </div>
           <div class="file-field input-field col-md-12 col-sm-12 ">
             <div class="btn" style="background:#42AD6D; color:white;">
@@ -74,7 +83,7 @@
               <input type="file" multiple>
             </div>
             <div class="file-path-wrapper">
-              <input class="file-path validate" type="text" placeholder="Subir foto de perfil" name="reg_file" id="reg_file">
+              <input class="file-path validate" type="text" placeholder="Subir foto de perfil" name="image" id="image">
             </div>
           </div>
           <div class="input-field col-md-12 col-sm-12 mt-5">

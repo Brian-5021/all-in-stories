@@ -8,17 +8,17 @@
                 session_start();
             }
             
-            $name = isset($_POST['reg_nombre']) ? $_POST['reg_nombre']: false;
+            $name = isset($_POST['reg_nombre']) ? mysqli_real_escape_string($db, $_POST['reg_nombre'])  : false;
             //esto es lo mismo que
             // if(isset($_POST['nombre'])){
             //     $nombre = $_POST['nombre'];
             // }else {
             //     $nombre = false;
             // }
-            $lastname = isset($_POST['reg_apellido']) ? $_POST['reg_apellido']: false;
-            $email = isset($_POST['reg_email']) ? $_POST['reg_email']: false;
-            $password = isset($_POST['reg_pass']) ? $_POST['reg_pass']: false;
-            $repassword = isset($_POST['reg_repass']) ? $_POST['reg_repass']: false;
+            $lastname = isset($_POST['reg_apellido']) ? mysqli_real_escape_string($db, $_POST['reg_apellido'])  : false;
+            $email = isset($_POST['reg_email']) ? mysqli_real_escape_string($db, $_POST['reg_email'])  : false;
+            $password = isset($_POST['reg_pass']) ? mysqli_real_escape_string($db, $_POST['reg_pass'])  : false;
+            $repassword = isset($_POST['reg_repass']) ? mysqli_real_escape_string($db, $_POST['reg_repass'])  : false;
             $file = isset($_POST['reg_file']) ? $_POST['reg_file']: false;
     
 
@@ -61,17 +61,29 @@
                 $errors['reg_pass'] = "La contraseña no puede estar vacía";
             }
 
-            
+            //verificar que las contraseñas coincidan
+
+            if ($password === $repassword) {
+                $validate_repass = true;
+          }
+          else {
+            $validate_repass = false;
+            $errors['reg_repass'] = "La contraseña debe coincidir";
+          }
+
+
+
+
             $save_user = false;
 
-            if (count($errors) == 0) {
+            if (count($errors) == 0 && $validate_repass = true) {
                 $save_user = true;
                 //cifrar contraseña
                 $password_segura = password_hash($password, PASSWORD_BCRYPT, ['cost' =>4]);
 
                 //insertar usuario en base de datos
 
-                $sql = "INSERT INTO usuarios VALUES(null, '$name', '$lastname', '$email', '$password_segura', null, CURDATE() );";
+                $sql = "INSERT INTO usuarios VALUES(null, '$name', '$lastname', '$email', '$password_segura', '$imgContenido', CURDATE() );";
 
                 $save = mysqli_query($db, $sql);
 

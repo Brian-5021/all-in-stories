@@ -1,7 +1,10 @@
 
+      
+    
     <!-- Header | librerías | Conexión a Base de datos -->
     <?php require_once 'Private/Components/header.php'?>
     <body>
+
     <!-- NAVBAR -->
     <?php require_once 'Private/Components/navbar.php'?>
     <!-- PARALLAX -->
