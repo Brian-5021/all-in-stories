@@ -33,4 +33,29 @@
     }
 
 
+
+    function getCategories($conection){
+        $sql = "SELECT * FROM categorias ORDER BY id ASC;";
+
+        $categories = mysqli_query($conection, $sql);
+
+        $result = array();
+
+        if ($categories && mysqli_num_rows($categories) >= 1){
+            $result = $categories;
+        }
+
+        return$result;
+    }
+
+
+
+
+
+
+
+
+
+
+
 ?>

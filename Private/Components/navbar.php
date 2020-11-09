@@ -1,4 +1,5 @@
 <?php require_once 'C:\xampp\htdocs\PHP\All-In-Stories\Private\Components\header.php'?>
+<?php require_once 'C:\xampp\htdocs\PHP\All-In-Stories\Private\Actions\functions.php'?>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -11,7 +12,7 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="sass.html">Sass</a></li>
                 <li><a href="badges.html">Components</a></li>
-                <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Categorías<i class="material-icons right">arrow_drop_down</i></a></li>
                 <?php if(!isset($_SESSION['usuario'])): ?>
                 <li><a href="Private/Pages/check-in.php" class="btn btn-success">registrarse</a></li>
                 
@@ -33,10 +34,17 @@
         </ul>
                 <!-- Dropdown Structure -->
         <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!">one</a></li>
-        <li><a href="#!">two</a></li>
-        <li class="divider"></li>
-        <li><a href="#!">three</a></li>
+        <?php $categorias = getCategories($db); 
+                
+                if(!empty($categorias)) :
+                
+                ?>
+                
+                <?php while($categoria = mysqli_fetch_assoc($categorias)): ?>
+                    <li>
+                        <a href="categoria.php?id=<?=$categoria['id']?>"><?=$categoria['nombre']?></a>
+                    </li>
+                <?php endwhile; endif; ?>
         </ul>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <!-- Compiled and minified JavaScript -->
