@@ -10,6 +10,7 @@
         return $badgeAlert;
     }
 
+    //borrar errores
 
     function DeleteErrors() {
         $borrado = false;
@@ -32,7 +33,7 @@
         return $borrado;
     }
 
-
+//Traer categorias 
 
     function getCategories($conection){
         $sql = "SELECT * FROM categorias ORDER BY id ASC;";
@@ -46,6 +47,27 @@
         }
 
         return$result;
+    }
+
+
+
+    //Traer entradas últimas entradas
+
+
+    function getLastEntries($conection){
+        $sql = "SELECT e.*, c.* FROM entradas e
+                INNER JOIN categorias c ON e.categoria_id = c.id
+                ORDER BY e.id DESC LIMIT 3";
+
+        $entries = mysqli_query($conection, $sql);
+
+        $result = array();
+
+        if($entries && mysqli_num_rows($entries) >= 1){
+            $result = $entries;
+        }
+
+        return $result;
     }
 
 
