@@ -11,7 +11,8 @@
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="sass.html">Sass</a></li>
-                <li><a href="badges.html">Components</a></li>
+                <li><a href="Private/Pages/create-category.php">Crear categoría</a></li>
+                <li><a href="./Private/Pages/create-entrie.php">Crear entrada</a></li>
                 <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Categorías<i class="material-icons right">arrow_drop_down</i></a></li>
                 <?php if(!isset($_SESSION['usuario'])): ?>
                 <li><a href="Private/Pages/check-in.php" class="btn btn-success">registrarse</a></li>
@@ -22,6 +23,7 @@
                 <?php endif; ?>
 <?php if(isset($_SESSION['usuario'])) : ?>
                   <li style="margin-right: 20px;"><?= "Hola, ". $_SESSION['usuario']['nombre']?></li>
+                  <li><a href="Private/Components/logout.php">Cerrar sesion</a></li>
                 <?php endif; ?>
             </ul>
             </div>
